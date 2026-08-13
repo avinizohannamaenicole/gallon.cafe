@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Grind | Coffee Shop</title>
+    <link rel="icon" href="LOGO.jpg">
+    <style>
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    font-family:'Poppins',sans-serif;
+}
+
+:root{
+    --primary:#4E342E;
+    --secondary:#6D4C41;
+    --accent:#D4A373;
+    --light:#FFF8F2;
+    --white:#ffffff;
+    --text:#333;
+    --shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+body{
+    background:var(--light);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#eee;
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--primary);
+    border-radius:20px;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 80px;
+    background:rgba(78,52,46,.88);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+    transition:.4s;
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:700;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:35px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    position:relative;
+    transition:.3s;
+}
+
+nav ul li a::after{
+    content:'';
+    position:absolute;
+    width:0;
+    height:2px;
+    left:0;
+    bottom:-6px;
+    background:var(--accent);
+    transition:.4s;
+}
+
+nav ul li a:hover{
+    color:var(--accent);
+}
+
+nav ul li a:hover::after{
+    width:100%;
+}
+
+/* HERO */
+
+.hero{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url("cafe.jpg") center/cover fixed;
+}
+
+.hero-content{
+    color:white;
+    animation:fadeUp 1s;
+}
+
+.hero h1{
+    font-size:70px;
+    margin-bottom:20px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.hero p{
+    font-size:24px;
+    color:#ffd9a0;
+    margin-bottom:40px;
+}
+
+.btn{
+    display:inline-block;
+    padding:16px 40px;
+    background:linear-gradient(135deg,#D4A373,#B87333);
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:600;
+    transition:.4s;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+}
+
+/* SECTION */
+
+section{
+    max-width:1200px;
+    margin:auto;
+    padding:100px 25px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:42px;
+    color:var(--primary);
+    margin-bottom:60px;
+}
+
+.section-title::after{
+    content:"☕";
+    display:block;
+    margin-top:10px;
+}
+
+/* ABOUT */
+
+#about{
+    display:flex;
+    align-items:center;
+    gap:60px;
+}
+
+.about-content{
+    flex:1;
+}
+
+.about-content h2{
+    font-size:40px;
+    color:var(--primary);
+    margin-bottom:20px;
+}
+
+.about-content p{
+    margin-bottom:20px;
+    font-size:18px;
+    color:#555;
+}
+
+.about-image{
+    flex:1;
+    height:450px;
+    background:url("cafe.jpg") center/cover;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:.5s;
+}
+
+.about-image:hover{
+    transform:scale(1.04);
+}
+
+/* MENU */
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+.menu-item{
+    background:white;
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    box-shadow:var(--shadow);
+    transition:.5s;
+    position:relative;
+    overflow:hidden;
+}
+
+.menu-item::before{
+    content:"";
+    position:absolute;
+    top:-100%;
+    left:-100%;
+    width:250%;
+    height:250%;
+    background:rgba(255,255,255,.15);
+    transform:rotate(30deg);
+    transition:.6s;
+}
+
+.menu-item:hover::before{
+    left:100%;
+}
+
+.menu-item:hover{
+    transform:translateY(-12px);
+}
+
+.menu-icon{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.menu-item h3{
+    color:var(--primary);
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.menu-item p{
+    color:#666;
+    margin-bottom:20px;
+}
+
+.price{
+    color:#C26D2D;
+    font-size:26px;
+    font-weight:bold;
+}
+
+/* CONTACT */
+
+#contact{
+    max-width:100%;
+    background:#f4ece5;
+}
+
+.contact-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+}
+
+.contact-info h2{
+    color:var(--primary);
+    margin-bottom:20px;
+}
+
+.contact-info h3{
+    margin-top:20px;
+    color:var(--secondary);
+}
+
+.contact-form{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:var(--shadow);
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#f5f5f5;
+    font-size:16px;
+    transition:.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    background:white;
+    outline:none;
+    box-shadow:0 0 0 2px var(--accent);
+}
+
+.submit-btn{
+    width:100%;
+    padding:15px;
+    background:var(--primary);
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.submit-btn:hover{
+    background:var(--accent);
+    transform:translateY(-3px);
+}
+
+/* FOOTER */
+
+footer{
+    background:var(--primary);
+    color:white;
+    text-align:center;
+    padding:35px;
+}
+
+footer p{
+    margin:8px 0;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(50px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:992px){
+
+nav{
+padding:20px 30px;
+}
+
+.hero h1{
+font-size:55px;
+}
+
+}
+
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+gap:15px;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+#about{
+flex-direction:column;
+text-align:center;
+}
+
+.contact-container{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.section-title{
+font-size:34px;
+}
+
+.about-content h2{
+font-size:32px;
+}
+
+}
+
+@media(max-width:500px){
+
+.hero h1{
+font-size:34px;
+}
+
+.btn{
+padding:14px 28px;
+}
+
+.menu-item{
+padding:25px;
+}
+
+}
+</style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <nav>
+        <div class="logo">☕ Coffee Shop</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home / Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Where Every Cup Tells a Story</h1>
+            <p>Fresh Roasted Beans • Handcrafted perfection</p>
+            <a href="#menu" class="btn">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-content">
+            <h2>Our Coffee Journey</h2>
+            <p>Founded with a passion for roasting the finest beans, Coffee Shop has been serving the neighborhood with premium, sustainably sourced coffee since 2020.</p>
+            <p>We work directly with local farmers to ensure every cup brought to your table supports communities and delivers an unmatched flavor profile.</p>
+        </div>
+        <div class="about-image"></div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2 class="section-title">Our Signature Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-icon">☕</div>
+                <h3>Espresso</h3>
+                <p>Rich, bold, and concentrated shot of pure premium coffee bliss.</p>
+                <div class="price">$8.50</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">🥛</div>
+                <h3>Caffè Latte</h3>
+                <p>Balanced espresso combined with velvety steamed milk and a light layer of foam.</p>
+                <div class="price">$6.00</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">🍫</div>
+                <h3>Caffè Mocha</h3>
+                <p>A sweet escape blending espresso, dark chocolate, and creamy milk.</p>
+                <div class="price">$9.50</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-icon">🥐</div>
+                <h3>Butter Croissant</h3>
+                <p>Flaky, golden-brown puff pastry baked fresh in-house every single morning.</p>
+                <div class="price">$5.25</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 style="color: #4b2e2e; margin-bottom: 20px;">Come Visit Us</h2>
+                <p>We would love to host you! Drop by for your morning fuel or a cozy afternoon workspace environment.</p>
+                <br>
+                <h3>📍 Location</h3>
+                <p>143 Brew Lane, Coffee City</p>
+                <h3>⏰ Hours</h3>
+                <p>Mon - Fri: 7:00 AM - 8:00 PM<br>Sat - Sun: 8:00 AM - 11:00 PM</p>
+            </div>
+            <div class="contact-form">
+                <h3 style="margin-bottom: 20px;">Drop a Message</h3>
+                <form action="#">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="4" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Coffee Shop. All rights reserved. Built with love and caffeine.</p>
+
+        <p><b>JENIYOUNG GALLON_CP2-C2</b></p>
+    </footer>
+
+</body>
+</html>
